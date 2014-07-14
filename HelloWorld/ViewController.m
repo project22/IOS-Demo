@@ -9,6 +9,8 @@
 #import "ViewController.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *inputField;
+- (IBAction)submitButton:(id)sender;
 
 @end
 
@@ -18,6 +20,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    _inputField.clearButtonMode = UITextFieldViewModeWhileEditing;
 }
 
 - (void)didReceiveMemoryWarning
@@ -26,4 +29,17 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)submitButton:(id)sender {
+    
+    [self.view endEditing:YES];
+ 
+    NSString *name = _inputField.text;
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Welcome!"
+                                                    message:[NSString stringWithFormat:@"Hello %@", name]
+                                                   delegate:nil
+                                          cancelButtonTitle:@"THANKS!"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
 @end
